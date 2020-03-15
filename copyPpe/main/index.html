@@ -17,39 +17,102 @@
 </head>
 
 <style media="screen">
+  /* Container holding the image and the text */
 
-/* Container holding the image and the text */
+  /* Centered text */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-/* Centered text */
-.centered {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-}
+  #titleOfPage {
+    font-size: 70px;
+    font-weight: 900;
+  }
 </style>
+
+
 <body>
+  <script type="text/javascript">
+
+
+   // var words = "しかし、それだけでは読み手に状況を伝えるには不十分な気がします。";
+    function function1() {
+      var words = document.getElementById("myTextarea").value;
+
+       console.log(words);
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', 'https://nandemo-proj.work/api/v1/copipe', true)
+
+      xhr.setRequestHeader("Content-Type", "application/json")
+      // xhr.setRequestHeader('content-type', 'application/charset=UTF-8', 'Accept', 'application/json')
+      var data = JSON.stringify({
+        "text": words
+      });
+      xhr.send(data)
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var somevalue = xhr.responseText
+
+          // console.log(somevalue)
+          // console.log(somevalue['text']);
+          // console.log(somevalue.text);
+          somevalue = somevalue.slice(1);
+
+          // Removing the last character
+          somevalue = somevalue.slice(0, somevalue.length - 1);
+
+           document.getElementById("demo").innerHTML =  somevalue;
+
+        }
+      }
+    }
+
+  </script>
   <div class="">
     <img src="images/work.jpg" style="width:100%;">
-   <div class="centered"><h1>コピっぺ</h1></div>
- </div>
-
+    <div class="centered">
+      <h1 id="titleOfPage">コピっぺ</h1>
+    </div>
+  </div>
+  <br>
   <div class="container">
-
-
     <h4>使い方</h4>
     <p>1. したのフォームにコピペしたい文章を入力してください。</p>
     <p>2. コピペボタンを押すと、自然言語処理などを施し変形された文章が出力されます。</p>
     <p>3. それをコピペして終わりです！</p>
 
   </div>
-<div class="container">
-  <form class="" action="index.html" method="post">
-    <textarea name="name" rows="8" cols="80"></textarea>
-  <input type="submit" value="Submit">
-  </form>
-</div>
+  <div class="container">
+    <form class="" action="index.html" method="post">
+      <textarea id="myTextarea" name="name" rows="8" cols="80"></textarea>
+      <!-- <input type="submit" value="Submit" > -->
+      <button type="button" onclick="function1()" name="button">click</button>
+
+    </form>
+  </div>
+  <div class="container">
+    <p id="demo"></p>
+  </div>
 
 </body>
 
 </html>
+
+
+<!--
+エンドポイント
+POST https://nandemo-proj.work/api/v1/copipe
+リクエストヘッダー
+Content-type: application/json
+Accept: application/json
+
+リクエストボディ
+{
+    "text":"また、厚生労働省の「精神疾患による患者数」によると精神疾患の患者数は年々増加しており平成29年には400万人を超えた。"
+レスポンスボディ
+{
+    "text":"厚生労働省「精神疾患による患者数」によると、精神疾患患者の数は年々増加しており、2017年には400万人を超えています。"
+} -->
