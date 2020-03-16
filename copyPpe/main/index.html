@@ -5,15 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Welcome to Firebase Hosting</title>
-
-  <!-- update the version number as needed -->
-  <!-- <script defer src="/__/firebase/7.11.0/firebase-app.js"></script>
-
-  <script defer src="/__/firebase/7.11.0/firebase-auth.js"></script>
-  <script defer src="/__/firebase/7.11.0/firebase-database.js"></script>
-
-
-  <script defer src="/__/firebase/init.js"></script> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
@@ -21,12 +12,6 @@
 
 <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-<!-- <script type="text/javascript">
-  const firebase = require("firebase");
-  // Required for side-effects
-  require("firebase/firestore");
-</script> -->
-
 
 <style media="screen">
   /* Container holding the image and the text */
@@ -45,49 +30,21 @@
   }
 </style>
 
-
 <body>
-
-  <!-- <script src="/__/firebase/7.11.0/firebase-app.js"></script> -->
-
-
-
   <script type="text/javascript">
     // Initialize Cloud Firestore through Firebase
     firebase.initializeApp({
       apiKey: "AIzaSyAbP6Ul0V4XeeKksseTkMAvyGjXNVpGdTY",
-    authDomain: "copy-7b6d4.firebaseapp.com",
-    projectId: "copy-7b6d4",
-
+      authDomain: "copy-7b6d4.firebaseapp.com",
+      projectId: "copy-7b6d4",
     });
-
     var db = firebase.firestore();
   </script>
-  <!-- <script src="/__/firebase/7.11.0/firebase-analytics.js"></script> -->
-
-  <!-- Initialize Firebase -->
-  <!-- <script src="/__/firebase/init.js"></script> -->
-
-
-
 
   <script type="text/javascript">
     function function1() {
-      db.collection("users").add({
-    first: "Ada",
-    last: "Lovelace",
-    born: 1815
-})
-.then(function(docRef) {
-    console.log("Document written with ID: ", docRef.id);
-})
-.catch(function(error) {
-    console.error("Error adding document: ", error);
-});
       var words = document.getElementById("myTextarea").value;
-
-      console.log(words);
-
+      var somevalue;
       var xhr = new XMLHttpRequest()
       xhr.open('POST', 'https://nandemo-proj.work/api/v1/copipe', true)
       xhr.setRequestHeader("Content-Type", "application/json")
@@ -105,9 +62,25 @@
           somevalue = somevalue.slice(0, somevalue.length - 1);
 
           document.getElementById("demo").innerHTML = somevalue;
+          var ts = new Date();
 
+          var db_of_translate = db.collection("translate_text").doc(ts.toJSON());
+          return db_of_translate.set({
+              before_text: words,
+              after_text: somevalue,
+            })
+            .then(function() {
+              console.log("Document successfully updated!");
+              console.log(words);
+              // console.log(Date(Date.now().seconds*100))
+            })
+            .catch(function(error) {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+            });
         }
       }
+
     }
   </script>
   <div class="">
@@ -122,12 +95,10 @@
     <p>1. したのフォームにコピペしたい文章を入力してください。</p>
     <p>2. コピペボタンを押すと、自然言語処理などを施し変形された文章が出力されます。</p>
     <p>3. それをコピペして終わりです！</p>
-
   </div>
   <div class="container">
     <form class="" action="index.html" method="post">
       <textarea id="myTextarea" name="name" rows="8" cols="80"></textarea>
-      <!-- <input type="submit" value="Submit" > -->
       <button type="button" onclick="function1()" name="button">click</button>
 
     </form>
