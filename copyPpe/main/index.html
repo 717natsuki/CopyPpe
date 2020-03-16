@@ -12,9 +12,18 @@
   <script defer src="/__/firebase/7.11.0/firebase-auth.js"></script>
   <script defer src="/__/firebase/7.11.0/firebase-database.js"></script>
   <!-- initialize the SDK after all desired features are loaded -->
+
   <script defer src="/__/firebase/init.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+<script type="text/javascript">
+  const firebase = require("firebase");
+  // Required for side-effects
+  require("firebase/firestore");
+</script>
+
 
 <style media="screen">
   /* Container holding the image and the text */
@@ -35,41 +44,52 @@
 
 
 <body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/7.11.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
   <script type="text/javascript">
+    // Initialize Cloud Firestore through Firebase
+    firebase.initializeApp({
+      apiKey: 'AIzaSyAbP6Ul0V4XeeKksseTkMAvyGjXNVpGdTY',
+      authDomain: 'copy-7b6d4.firebaseapp.com',
+      projectId: 'copy-7b6d4'
+    });
 
+    var db = firebase.firestore();
+  </script>
+  <script src="/__/firebase/7.11.0/firebase-analytics.js"></script>
 
-   // var words = "しかし、それだけでは読み手に状況を伝えるには不十分な気がします。";
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+  <script type="text/javascript">
     function function1() {
       var words = document.getElementById("myTextarea").value;
 
-       console.log(words);
+      console.log(words);
+
       var xhr = new XMLHttpRequest()
       xhr.open('POST', 'https://nandemo-proj.work/api/v1/copipe', true)
-
       xhr.setRequestHeader("Content-Type", "application/json")
-      // xhr.setRequestHeader('content-type', 'application/charset=UTF-8', 'Accept', 'application/json')
       var data = JSON.stringify({
         "text": words
       });
+
       xhr.send(data)
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
           var somevalue = xhr.responseText
-
-          // console.log(somevalue)
-          // console.log(somevalue['text']);
-          // console.log(somevalue.text);
           somevalue = somevalue.slice(1);
 
           // Removing the last character
           somevalue = somevalue.slice(0, somevalue.length - 1);
 
-           document.getElementById("demo").innerHTML =  somevalue;
+          document.getElementById("demo").innerHTML = somevalue;
 
         }
       }
     }
-
   </script>
   <div class="">
     <img src="images/work.jpg" style="width:100%;">
