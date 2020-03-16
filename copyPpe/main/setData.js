@@ -13,7 +13,7 @@ function function1() {
   var words = document.getElementById("myTextarea").value;
   var somevalue;
   var xhr = new XMLHttpRequest()
-  xhr.open('POST', 'https://nandemo-proj.work/api/v1/copipe', true)
+  xhr.open('POST', 'https://ukasdmj.suishow.tokyo/copipe', true)
   xhr.setRequestHeader("Content-Type", "application/json")
   var data = JSON.stringify({
     "text": words
