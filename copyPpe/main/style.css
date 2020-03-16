@@ -64,14 +64,16 @@ textarea{
     margin-right: auto;
     float: right;
 }
-ol {
-   float:left;
-   position:relative;
-   left:50%;
-}
 
-li {
-   position:relative;
-   left:-50%;
-  margin-right: 60px;
+ol {
+    width: 90%;
+    margin: 100px;
+}
+/* li{
+  margin-left: 300px;
+} */
+
+
+.howToUseTitile{
+  font-size: 40px;
 }
