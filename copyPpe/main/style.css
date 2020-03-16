@@ -38,3 +38,29 @@ textarea {
 H4 {
   text-align: center
 }
+
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+}
+textarea{
+  width: 100%;
+  height: 300px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
+.btnSize{
+  width: 120px;
+    margin-right: auto;
+    float: right;
+}
