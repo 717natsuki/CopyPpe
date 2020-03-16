@@ -64,3 +64,14 @@ textarea{
     margin-right: auto;
     float: right;
 }
+ol {
+   float:left;
+   position:relative;
+   left:50%;
+}
+
+li {
+   position:relative;
+   left:-50%;
+  margin-right: 60px;
+}
