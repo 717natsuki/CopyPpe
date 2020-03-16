@@ -1,29 +1,40 @@
-
 .centered {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin: auto;
+  align-items: center;
 }
+
 #titleOfPage {
   font-size: 70px;
   font-weight: 900;
   width: 300px;
-
-
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-
-
+  font-family: 'M PLUS Rounded 1c', sans-serif;
 }
+
 textarea {
   max-width: 100%;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 770px) {
   .centered {
     position: absolute;
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
+}
+
+.intro {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+#subtitle {
+  align-items: center;
+}
+
+H4 {
+  text-align: center
 }
