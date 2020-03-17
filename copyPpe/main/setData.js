@@ -11,43 +11,51 @@ var db = firebase.firestore();
 
 function function1() {
   var words = document.getElementById("myTextarea").value;
-  var somevalue;
-  var xhr = new XMLHttpRequest()
-  xhr.open('POST', 'https://ukasdmj.suishow.tokyo/copipe', true)
-  xhr.setRequestHeader("Content-Type", "application/json")
-  var data = JSON.stringify({
-    "text": words
-  });
+console.log(words.length)
 
-  xhr.send(data)
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var somevalue = xhr.responseText
-      somevalue = somevalue.slice(1);
+  if (words.length > 400){
+    document.getElementById("errorDiv").innerHTML = '４００字以上はできません。';
+    console.log('error')
+  } else {
+    console.log('changing')
+    var somevalue;
+    var xhr = new XMLHttpRequest()
+    xhr.open('POST', 'https://ukasdmj.suishow.tokyo/copipe', true)
+    xhr.setRequestHeader("Content-Type", "application/json")
+    var data = JSON.stringify({
+      "text": words,
+      "desu":0
+    });
 
-      // Removing the last character
-      somevalue = somevalue.slice(0, somevalue.length - 1);
+    xhr.send(data)
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var somevalue = xhr.responseText
+        somevalue = somevalue.slice(1);
 
-      document.getElementById("demo").innerHTML = somevalue;
-      var ts = new Date();
+        // Removing the last character
+        somevalue = somevalue.slice(0, somevalue.length - 1);
 
-      var db_of_translate = db.collection("translate_text").doc(ts.toJSON());
-      return db_of_translate.set({
-          before_text: words,
-          after_text: somevalue,
-        })
-        .then(function() {
-          console.log("Document successfully updated!");
-          console.log(words);
-          // console.log(Date(Date.now().seconds*100))
-        })
-        .catch(function(error) {
-          // The document probably doesn't exist.
-          console.error("Error updating document: ", error);
-        });
+        document.getElementById("demo").innerHTML = somevalue;
+        var ts = new Date();
+
+        var db_of_translate = db.collection("translate_text").doc(ts.toJSON());
+        return db_of_translate.set({
+            before_text: words,
+            after_text: somevalue,
+          })
+          .then(function() {
+            console.log("Document successfully updated!");
+            console.log(words);
+            // console.log(Date(Date.now().seconds*100))
+          })
+          .catch(function(error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+          });
+      }
     }
   }
-
 }
 
 //

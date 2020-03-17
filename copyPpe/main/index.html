@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>コピっぺ</title>
-  <script src="jquery-3.4.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
@@ -13,6 +12,8 @@
 
 <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
 
 <body>
   <script src="setData.js"></script>
@@ -30,7 +31,7 @@
       <center>
         <h1 id="titleOfPage">コピっぺ</h1>
       </center>
-      <h4 id="subtitle">盗作したい文章を入力してね。盗作がバレないように変換します。</h4>
+      <h4 id="subtitle">盗作したい文章を入力してね。<br>盗作がバレないように変換します。</h4>
 
     </div>
   </div>
@@ -40,31 +41,91 @@
     <br>
 
   </div>
-  <div class="explaninDiv2">
-    <div class="explain_howUse">
-      <ol>
+  <div class="explaninDiv2 col-sm-6">
+      <ol class="explanationList ">
         <li>下のフォームにコピペしたい文章を入力してください。</li>
         <li>盗作ボタンを押すと、変形された文章が出力されます。</li>
         <li>それをコピペして終わりです！</li>
         <ol>
-    </div>
   </div>
   <div class="container intro">
     <form class="" action="index.html" method="post" content="width=device-width, initial-scale=1">
-      <textarea id="myTextarea" name="name" rows="8" cols="80"></textarea>
+      <textarea id="myTextarea" name="name" rows="8" cols="80" maxlength="400"></textarea>
       <p></p>
+      <div id="errorDiv">
+      </div>
       <button type="button" onclick="function1()" ame="button" class="btn btn-secondary btnSize">盗作！</button>
-
     </form>
   </div>
-
-
+  <br>
+  <br>
   <br>
   <div class="container intro">
     <p id="demo"></p>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <h4 class="changeFontsOnly">関連リンク</h4>
+  <hr>
+
+  <div class="row changeFontsOnly">
+    <div class="col-sm-6">
+      <ul class="firstList">
+        <li><a href="https://www.waseda.jp/top/">早稲田大学</a></li>
+
+        <li><a href="https://www.waseda.jp/top/about/work/organizations/public-relations">早稲田大学広報課</a></li>
+        <li><a href="http://www.waseda.jp/student/">早稲田大学学生部</a></li>
+        <li><a href="https://www.waseda.jp/wits/">早稲田大学情報企画部</a></li>
+        <li><a href="http://www.waseda.jp/navi/">早稲田大学ITサービスナビ</a></li>
+        <li><a href="http://www.cs.waseda.ac.jp/">早稲田大学情報理工学科</a></li>
+      </ul>
+      <ul class="firstList">
+        <li><a href="https://www.u-tokyo.ac.jp/ja/index.html">東京大学</a></li>
+
+        <li><a href="https://www.lib.u-tokyo.ac.jp/ja">東京大学図書館</a></li>
+        <li><a href="https://www.u-tokyo.ac.jp/ja/general/contact.html">東京大学お問い合わせ</a></li>
+        <li><a href="https://www.i.u-tokyo.ac.jp/">東京大学院情報理工学系研究科</a></li>
+        <li><a href="https://www.itc.u-tokyo.ac.jp/">東京大学情報基盤センター</a></li>
+        <li><a href="https://www.u-tokyo.ac.jp/ja/students/services/m01.html">東京大学学生関係</a></li>
+      </ul>
+    </div>
+    <style media="screen">
+
+    </style>
+    <div class="col-sm-6">
+      <ul class="secondList">
+        <li><a href="https://www.anlp.jp/proceedings/annual_meeting/2019/">自然言語処理学会第25回年次大会(NLP2019)
+発表論文集</a></li>
+        <li><a href="https://www.python.org/">Python</a></li>
+        <li><a href="https://www.kaggle.com/">Kaggle</a></li>
+        <li><a href="https://imaginecup.microsoft.com/ja-jp">Imagine Cup</a></li>
+        <li><a href="http://www.nltk.org/book-jp/ch12.html">Python による日本語自然言語処理</a></li>
+
+      </ul>
+      <ul class="secondList">
+        <li><a href="https://towardsdatascience.com/data-science/home">Data Science</a></li>
+        <li><a href="https://developers.google.com/">Google Developers</a></li>
+        <li><a href="https://grow.google/intl/ALL_jp/">Grow with Google</a></li>
+        <li><a href="https://developers.google.com/machine-learning/crash-course/">Machine Learning Crash Course</a></li>
+      </ul>
+      <ul class="secondList">
+        <li><a href="https://github.com/">GitHub</a></li>
+        <li><a href="https://education.github.com/">GitHub Education</a></li>
+        <li><a href="https://stackoverflow.com/">Stack Overflow</a></li>
+      </ul>
+    </div>
+  </div>
+
+<br>
+<br>
+<br>
+
   <footer class="footer">
-    <p>Created by: ??</p>
+    <p id="footer_title">SuiShow</p>
     <p>Contact information: <a href="mailto:717natsuki@gmail.com">
         717natsuki@gmail.com</a>.</p>
   </footer>
